@@ -1,0 +1,24 @@
+[project]
+name = "stt-yandex"
+version = "0.1.0"
+description = "Speech-to-Text CLI tool with audio conversion and Yandex Cloud STT integration"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pydub>=0.25.1",
+    "typer>=0.12.0",
+    "rich>=13.7.0",
+    "python-dotenv>=1.0.0",
+    "requests>=2.31.0",
+    "boto3>=1.34.0",
+]
+
+[project.scripts]
+stt-cli = "stt_cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["stt_cli.py"]
