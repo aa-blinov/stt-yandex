@@ -1,20 +1,22 @@
-<!-- house-style: template — fill this file in, then delete this line -->
-
 # Screenshots
 
-Images referenced from the README and the documents.
+There are no screenshots in this repository, and this folder holds no image
+files.
 
-<!--
-  Put the files here and reference them from the README:
+The interface of the tool is a terminal, and a terminal does not photograph
+well: the colours are the reader's own palette, the font is the reader's own
+font, and the width is the reader's own window. A picture of it would show
+one machine, not the tool.
 
-  ```markdown
-  ![The main window](docs/screenshots/main.png)
-  ```
+What the tool prints is written down instead:
 
-  Images are referenced by relative path, so they resolve both on GitHub and
-  in a local checkout. The house-style checker verifies that every image
-  reference points at a file that exists, so a renamed screenshot cannot
-  quietly break the README.
+- the line grammar and the colour of each outcome, in
+  [../../DESIGN.md](../../DESIGN.md);
+- the chain from the recording to the two files in `outputs/`, in
+  [../architecture.md](../architecture.md);
+- the three commands and the options they take, in
+  [../../README.md](../../README.md).
 
-  Delete this file once the project has images of its own.
--->
+The one asset the repository does carry is `test.ogg` in the root: a 43:58
+stereo recording of 30,526,435 bytes. It is a fixture for the conversion, not
+a picture, and it is not referenced from here.
