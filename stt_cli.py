@@ -16,7 +16,6 @@ from typing import Optional
 import boto3
 import requests
 import typer
-import urllib3
 from botocore.exceptions import ClientError, NoCredentialsError
 from dotenv import load_dotenv, set_key
 from pydub import AudioSegment
@@ -27,7 +26,6 @@ from rich.prompt import Confirm, Prompt
 from rich.table import Table
 
 # Disable SSL warnings
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 console = Console()
@@ -392,7 +390,6 @@ def transcribe_audio(config: Config, file_path: str) -> tuple[str, str, str]:
         "https://stt.api.cloud.yandex.net/stt/v3/recognizeFileAsync",
         headers=headers,
         json=request_data,
-        verify=False,
     )
 
     if response.status_code != 200:
@@ -419,7 +416,7 @@ def transcribe_audio(config: Config, file_path: str) -> tuple[str, str, str]:
         task = progress.add_task("Waiting for transcription to complete...", total=None)
 
         while True:
-            op_response = requests.get(operation_url, headers=headers, verify=False)
+            op_response = requests.get(operation_url, headers=headers)
 
             if op_response.status_code != 200:
                 console.print(
@@ -445,7 +442,6 @@ def transcribe_audio(config: Config, file_path: str) -> tuple[str, str, str]:
     speech_response = requests.get(
         f"https://stt.api.cloud.yandex.net/stt/v3/getRecognition?operation_id={operation_id}",
         headers=headers,
-        verify=False,
     )
 
     if speech_response.status_code != 200:
@@ -990,7 +986,6 @@ def status():
                 test_url,
                 headers=headers,
                 json={"config": {"specification": {"audioEncoding": "OGG_OPUS"}}},
-                verify=False,
             )
 
             if test_response.status_code == 403:
